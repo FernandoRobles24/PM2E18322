@@ -19,6 +19,7 @@ public partial class Main : ContentPage
 	{
 		InitializeComponent();
         controller = new Controllers.LugarControllers();
+        UpdateGuardarButtonState();
 
     }
     protected override async void OnAppearing()
@@ -55,6 +56,7 @@ public partial class Main : ContentPage
             await DisplayAlert("Error", $"Error: {ex.Message}", "OK");
         }
         await CheckGpsStatusAsync();
+        UpdateGuardarButtonState();
     }
 
     private async System.Threading.Tasks.Task CheckGpsStatusAsync()
@@ -66,6 +68,37 @@ public partial class Main : ContentPage
             await DisplayAlert("GPS Not Enabled", "Please enable GPS to use this app.", "OK");
         }
     }
+
+    private bool AreAllFieldsValid()
+    {
+        if (string.IsNullOrEmpty(PlaceEntry.Text))
+        {
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(LatitudEntry.Text))
+        {
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(LongitudEntry.Text))
+        {
+            return false;
+        }
+
+        // Verificar si la imagen está seleccionada
+        if (photo == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    private void UpdateGuardarButtonState()
+    {
+        btnGuardar.IsEnabled = AreAllFieldsValid();
+    }
+
     private async void btnBuscar_Clicked(object sender, EventArgs e)
     {
         string place = PlaceEntry.Text;
@@ -161,10 +194,12 @@ public partial class Main : ContentPage
             using Stream sourcephoto = await photo.OpenReadAsync();
             using FileStream streamlocal = File.OpenWrite(photoPath);
 
-            imgFoto.Source = ImageSource.FromStream(() => photo.OpenReadAsync().Result); //Para verla dentro de archivo
+            imgFoto.Source = ImageSource.FromStream(() => photo.OpenReadAsync().Result); // Para verla dentro de archivo
 
-            await sourcephoto.CopyToAsync(streamlocal); //Para Guardarla local
+            await sourcephoto.CopyToAsync(streamlocal); // Para guardarla local
         }
+
+        UpdateGuardarButtonState();
     }
 
     private async void btnGuardar_Clicked(object sender, EventArgs e)
@@ -203,8 +238,24 @@ public partial class Main : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", $"Ocurrio un Error: {ex.Message}", "OK");
-        }
+        } 
     }
+
+    private void PlaceEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateGuardarButtonState(); // Actualiza el estado del botón Guardar cuando cambia el texto
+    }
+
+    private void LatitudEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateGuardarButtonState(); // Actualiza el estado del botón Guardar cuando cambia el texto
+    }
+
+    private void LongitudEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateGuardarButtonState(); // Actualiza el estado del botón Guardar cuando cambia el texto
+    }
+
 
     private void OnLinkTapped(object sender, EventArgs e)
     {
