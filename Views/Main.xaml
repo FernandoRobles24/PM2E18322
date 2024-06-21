@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E18322.Views.Main"
+             Title="APP"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image
+            Source="logouth.png"
+            Margin="20,40,0,0"
+            HorizontalOptions="Start"
+            HeightRequest="125"
+            Aspect="AspectFit" />
+
+            <Label
+            Margin="0,-85,25,10"
+            FontAttributes="Bold"
+            FontSize="Title"
+            TextColor="Black"
+            HorizontalOptions="End"
+            SemanticProperties.HeadingLevel="Level1"
+            Style="{StaticResource Headline}"
+            Text="SITE VISITOR APP" />
+
+            <Label
+            Margin="0,65,0,50"
+            FontSize="18"
+            TextColor="Black"
+            HorizontalOptions="Center"
+            SemanticProperties.HeadingLevel="Level1"
+            Style="{StaticResource SubHeadline}"
+            Text="IMAGEN SITIO VISITADO" />
+
+            <Image
+            x:Name="imgFoto"
+            Source="lugar.png"
+            Margin="20,-30,20,20"
+            HorizontalOptions="Center"
+            HeightRequest="150"
+            Aspect="AspectFit" />
+
+            <Button
+            x:Name="btnImagen"
+            Margin="25,25,25,40"
+            WidthRequest="120"
+            HeightRequest="45"
+            Background="#00532c" TextColor="White" FontAttributes="Bold"
+            Clicked="btnAgregar_Clicked"
+            HorizontalOptions="Center"
+            SemanticProperties.Hint="Agregar un nuevo Autor"
+            Text="AGREGAR" />
+
+            <Label
+            Margin="30,0,0,30"
+            FontAttributes="Bold"
+            FontSize="16"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level1"
+            Style="{StaticResource SubHeadline}"
+            Text="Latitud: " />
+
+            <Entry
+            x:Name="LatitudEntry"
+            Margin="25,-20,25,20"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="Body"
+            IsEnabled="False"
+            IsReadOnly="True"
+            Keyboard="Text"
+            Placeholder="Indica el lugar donde estas"
+            VerticalOptions="Start" />
+
+            <Label
+            Margin="30,0,0,30"
+            FontAttributes="Bold"
+            FontSize="16"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level1"
+            Style="{StaticResource SubHeadline}"
+            Text="Logitud: " />
+
+            <Entry
+            x:Name="LongitudEntry"
+            Margin="25,-20,25,20"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="Body"
+            IsEnabled="False"
+            IsReadOnly="True"
+            Keyboard="Text"
+            Placeholder="Indica el lugar donde estas"
+            VerticalOptions="Start" />
+
+            <Label
+            Margin="30,20,0,30"
+            FontAttributes="Bold"
+            FontSize="16"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level1"
+            Style="{StaticResource SubHeadline}"
+            Text="Descripcion" />
+
+            <Entry
+            x:Name="PlaceEntry"
+            Margin="25,-20,25,40"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="Body"
+            Keyboard="Text"
+            Placeholder="Indica el lugar donde estas"
+            VerticalOptions="Start" />
+
+            <Button
+            x:Name="btnBuscar"
+            Margin="45,0,0,10"
+            WidthRequest="120"
+            HeightRequest="45"
+            Background="#00532c" TextColor="White" FontAttributes="Bold"
+            Clicked="btnBuscar_Clicked"
+            HorizontalOptions="Start"
+            SemanticProperties.Hint="Agregar un nuevo Autor"
+            Text="BUSCAR" />
+
+            <Button
+            x:Name="btnSitios"
+            Margin="25,-54.5,45,10"
+            WidthRequest="120"
+            HeightRequest="45"
+            Background="#00532c" TextColor="White" FontAttributes="Bold"
+            Clicked="btnSitios_Clicked"
+            HorizontalOptions="End"
+            SemanticProperties.Hint="Agregar un nuevo Autor"
+            Text="LISTA SITIOS" />
+
+            <Button
+            x:Name="btnGuardar"
+            Margin="45,25,25,10"
+            WidthRequest="120"
+            HeightRequest="45"
+            Background="#00532c" TextColor="White" FontAttributes="Bold"
+            Clicked="btnGuardar_Clicked"
+            HorizontalOptions="Start"
+            SemanticProperties.Hint="Agregar un nuevo Autor"
+            Text="GUARDAR" />
+
+            <Button
+            x:Name="btnSalir"
+            Margin="-15,-54,45,10"
+            WidthRequest="120"
+            HeightRequest="45"
+            Background="#00532c" TextColor="White" FontAttributes="Bold"
+            Clicked="btnSalir_Clicked"
+            HorizontalOptions="End"
+            SemanticProperties.Hint="Ver Lista de Autores"
+            Text="SALIR APP" />
+
+            <Grid BackgroundColor="#00532c"
+          Margin="0,40,0,0"
+          Padding="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="UTH - Web"
+               TextColor="White"
+               FontAttributes="Bold"
+               Grid.Column="0"
+               VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnLinkTapped"
+                    CommandParameter="https://www.uth.hn/" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="UTH - Instagram"
+               TextColor="White"
+               FontAttributes="Bold"
+               Grid.Column="1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnLinkTapped"
+                    CommandParameter="https://www.instagram.com/uthedu/" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="UTH - Facebook"
+               TextColor="White"
+               FontAttributes="Bold"
+               Grid.Column="2"
+               VerticalOptions="Center"
+               HorizontalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="OnLinkTapped"
+                    CommandParameter="https://www.facebook.com/pages/UTH/135852406479896/?locale=es_LA" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

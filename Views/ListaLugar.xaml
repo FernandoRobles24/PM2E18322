@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E18322.Views.ListaLugar"
+             xmlns:convert="clr-namespace:PM2E18322.Controllers"
+             Title="Lista de Lugares"
+             BackgroundColor="#fff">
+
+    <ContentPage.Resources>
+        <convert:base64Image x:Key="BaseArray" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+            <Frame
+                Grid.Column="1"
+                Margin="20,20,20,0"
+                BorderColor="Black"
+                BackgroundColor="#bca858"
+                CornerRadius="50"
+                Padding="0">
+                <SearchBar
+                    x:Name="searchBar"
+                    Margin="0,0,0,0"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    Background="#bca858"
+                    Placeholder="Buscar Autores"
+                    PlaceholderColor="Black"
+                    SearchButtonPressed="searchBar_SearchButtonPressed"
+                    TextChanged="searchBar_TextChanged" />
+            </Frame>
+
+            <CollectionView
+                x:Name="collectionView"
+                HorizontalOptions="Center"
+                SelectionMode="Single"
+                VerticalOptions="Center"
+                SelectionChanged="collectionView_SelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                             Grid.Column="1"
+                             Margin="20,20,20,0"
+                             BorderColor="Black"
+                             BackgroundColor="#bca858"
+                             CornerRadius="25"
+                             Padding="0">
+
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            Text="ELIMINAR"
+                                            BackgroundColor="#fd3333"
+                                            Command="{Binding BindingContext.DeleteCommand, Source={x:Reference collectionView}}"
+                                            CommandParameter="{Binding .}" 
+                                            Clicked="EliminarAutor_Clicked"/>
+                                        <SwipeItem
+                                            Text="ACTUALIZAR" 
+                                            BackgroundColor="#60bd37"
+                                            Command="{Binding BindingContext.UpdateCommand, Source={x:Reference collectionView}}"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="ActualizarAutor_Clicked"/>
+                                        <SwipeItem
+                                            Text="MAPA" 
+                                            BackgroundColor="#005b96"
+                                            Command="{Binding BindingContext.UpdateCommand, Source={x:Reference collectionView}}"
+                                            CommandParameter="{Binding .}" 
+                                            Clicked="Mapa_Clicked"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Frame
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    BorderColor="Black"
+                                    BackgroundColor="#bca858"
+                                    CornerRadius="25"
+                                    Padding="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.Column="0"
+                                            Margin="10,10,20,10"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Id}"
+                                            VerticalOptions="CenterAndExpand" />
+
+                                        <Frame
+                                            Grid.Column="1"
+                                            Margin="-10,15,0,15"
+                                            BorderColor="Black"
+                                            CornerRadius="25"
+                                            Padding="-10">
+                                            <Image
+                                                Grid.Column="1"
+                                                Margin="0,0,0,0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="100"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="{Binding Foto, Converter={StaticResource BaseArray}}"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="100" />
+                                        </Frame>
+
+                                        <StackLayout
+                                           Grid.Column="3"
+                                            VerticalOptions="Center"
+                                            Margin="20,0,0,0">
+
+                                            <Label
+                                                Grid.Column="2"
+                                                Margin="0,0,0,0"
+                                                TextColor="Black"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Descripcion}"
+                                                VerticalOptions="CenterAndExpand" />
+
+                                            <Label
+                                                Grid.Column="3"
+                                                Margin="0,5,0,0"
+                                                TextColor="Black"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Longitud, StringFormat='Longitud: ({0})'}"
+                                                VerticalOptions="CenterAndExpand" />
+
+                                            <Label
+                                                Grid.Column="4"
+                                                Margin="0,5,0,0"
+                                                TextColor="Black"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Latitud, StringFormat='Latitud: ({0})'}"
+                                                VerticalOptions="CenterAndExpand" />
+                                        </StackLayout>
+
+                                        
+                                    </Grid>
+                                </Frame>
+
+
+
+                            </SwipeView>
+
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                x:Name="btnRegresar"
+                Margin="0,30,0,20"
+                Background="#00532c"
+                TextColor="White"
+                FontAttributes="Bold"
+                WidthRequest="200"
+                HeightRequest="50"
+                Clicked="btnRegresar_Clicked"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Regresar a Menu Principal"
+                Text="REGRESAR" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
