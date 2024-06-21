@@ -5,9 +5,11 @@ namespace PM2E18322.Views;
 
 public partial class Mapa : ContentPage
 {
-	public Mapa(string latitudeText, string longitudeText)
+    public string photo;
+	public Mapa(string latitudeText, string longitudeText, string foto)
 	{
 		InitializeComponent();
+        photo = foto;
         if (double.TryParse(latitudeText, out double latitude) && double.TryParse(longitudeText, out double longitude))
         {
             var position = new Location(latitude, longitude);
@@ -27,5 +29,25 @@ public partial class Mapa : ContentPage
             DisplayAlert("Error", "Invalid coordinates", "OK");
         }
 
+    }
+    private async void btnCompartir_Clicked(object sender, EventArgs e)
+    {
+        byte[] imageBytes = Convert.FromBase64String(photo);
+        string tempFilePath = Path.Combine(FileSystem.CacheDirectory, "tempImage.png");
+        File.WriteAllBytes(tempFilePath, imageBytes);
+
+        await ShareFileAsync(tempFilePath);
+    }
+    private async Task ShareFileAsync(string filePath)
+    {
+        await Share.RequestAsync(new ShareFileRequest
+        {
+            Title = "Compartir Imagen",
+            File = new ShareFile(filePath)
+        });
+    }
+    private void btnSalir_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new ListaLugar());
     }
 }

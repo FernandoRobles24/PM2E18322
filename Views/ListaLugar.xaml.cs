@@ -66,7 +66,7 @@ public partial class ListaLugar : ContentPage
 
     private void btnRegresar_Clicked(object sender, EventArgs e)
     {
-        Navigation.PopAsync();
+        Navigation.PushAsync(new Main());
     }
 
     private void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,6 +112,6 @@ public partial class ListaLugar : ContentPage
 
     private async void Mapa_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Mapa(selectedAuthor.Latitud, selectedAuthor.Longitud));
+        await Navigation.PushAsync(new Mapa(selectedAuthor.Latitud, selectedAuthor.Longitud, selectedAuthor.Foto));
     }
 }

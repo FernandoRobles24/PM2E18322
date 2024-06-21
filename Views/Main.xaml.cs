@@ -1,7 +1,12 @@
+using Microsoft.Maui.Controls;
+//using Microsoft.Maui.Essentials;
+using System;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Collections.ObjectModel;
 using PM2E18322.Views;
+using Microsoft.Maui.Maps.Handlers;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 namespace PM2E18322.Views;
 
 public partial class Main : ContentPage
@@ -133,7 +138,17 @@ public partial class Main : ContentPage
     }
     private void btnSalir_Clicked(object sender, EventArgs e)
     {
-        //Navigation.PushAsync(new nuevoAutor());
+        ExitApp();
+    }
+    private void ExitApp()
+    {
+#if ANDROID
+            Platform.CurrentActivity.FinishAffinity();
+#elif IOS
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+#elif WINDOWS
+            Application.Current.Quit();
+#endif
     }
 
     private async void btnAgregar_Clicked(object sender, EventArgs e)

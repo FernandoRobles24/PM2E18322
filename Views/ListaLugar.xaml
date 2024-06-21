@@ -25,7 +25,7 @@
                     TextColor="Black"
                     FontAttributes="Bold"
                     Background="#bca858"
-                    Placeholder="Buscar Autores"
+                    Placeholder="Buscar Lugares"
                     PlaceholderColor="Black"
                     SearchButtonPressed="searchBar_SearchButtonPressed"
                     TextChanged="searchBar_TextChanged" />

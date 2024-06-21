@@ -6,7 +6,34 @@
              Title="Mapa">
     <Grid>
         <maps:Map x:Name="MyMap"
+                  WidthRequest="400"
+                  HeightRequest="600"
                   IsShowingUser="true"
-                  VerticalOptions="FillAndExpand" />
+                  VerticalOptions="Start" />
+
+        <Button
+            x:Name="btnCompartir"
+            Margin="35,0,0,30"
+            Background="#00532c"
+            TextColor="White"
+            FontAttributes="Bold"
+            WidthRequest="150"
+            HeightRequest="50"
+            Clicked="btnCompartir_Clicked"
+            VerticalOptions="End"
+            HorizontalOptions="Start"
+            Text="COMPARTIR" />
+        <Button
+            x:Name="btnSalir"
+            Margin="0,0,35,30"
+            Background="#00532c"
+            TextColor="White"
+            FontAttributes="Bold"
+            WidthRequest="150"
+            HeightRequest="50"
+            Clicked="btnSalir_Clicked"
+            VerticalOptions="End"
+            HorizontalOptions="End"
+            Text="SALIR" />
     </Grid>
 </ContentPage>
