@@ -147,7 +147,7 @@
         Clicked="btnSalir_Clicked"
         HorizontalOptions="End"
         SemanticProperties.Hint="Ver Lista de Autores"
-        Text="SALIR APP" />
+        Text="REGRESAR" />
 
             <Grid BackgroundColor="#00532c"
       Margin="0,40,0,0"
